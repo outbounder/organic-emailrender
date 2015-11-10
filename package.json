@@ -1,0 +1,34 @@
+{
+  "name": "organic-emailrender",
+  "version": "0.1.0",
+  "description": "A simple email render",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine-node ./tests"
+  },
+  "author": "Boris Filipov",
+  "license": "MIT",
+  "dependencies": {
+    "async": "~0.2.10"
+  },
+  "peerDependencies": {
+    "organic": "0.2.x",
+    "organic-plasma": "0.0.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/outbounder/organic-emailrender.git"
+  },
+  "bugs": {
+    "url": "https://github.com/outbounder/organic-emailrender/issues"
+  },
+  "homepage": "https://github.com/outbounder/organic-emailrender",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [
+    "organic",
+    "email",
+    "render"
+  ]
+}
