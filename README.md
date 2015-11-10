@@ -8,6 +8,7 @@ A simple email render supporting.
       "reactOn": String,
       "root": String,
       "templateEngine": String,
+      "templateEngineOptions": Object, optional
       "cache": Boolean, default false,
       "emitEmail": String, optional
       "syncWithEmailEmit": Boolean, optional, default false
@@ -47,12 +48,14 @@ Re-emits `dna.reactOn` chemicals by adding new `type` value equal to `dna.emitEm
 
 Can be a path to a module having interface:
 
-    module.exports = function (emailTemplatePath) {
+    var Template = function (templatePath) {
+
     }
 
-    module.exports.prototype.render = function (templateData, handler) {
-      // renderedTemplate = emailTemplatePath + templateData
-      handler(err, {html: renderedTemplateHtml, text: renderedTemplateText})
+    Template.prototype.render = function (data, done) {
+      done(err, { html: "", text: "" })
     }
 
-Or it can be [email-templates](https://github.com/niftylettuce/node-email-templates) module
+    module.exports = function (options) {
+      return Template
+    }

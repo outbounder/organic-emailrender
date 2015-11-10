@@ -51,14 +51,11 @@ module.exports.prototype.loadTemplate = function(email, done) {
 
   var targetTemplate = path.join(root, email.template)
 
-  var templateEngine = this.dna.templateEngine
-  var Renderer = require(templateEngine)
+  var templateEnginePath = this.dna.templateEngine
+  if (!pathIsFull(templateEnginePath))
+    templateEnginePath = path.join(process.cwd(), templateEnginePath)
 
-  // email-templates module workaround
-  if (templateEngine === 'email-templates') {
-    Renderer = Renderer.EmailTemplate
-  }
-
+  var Renderer = require(templateEnginePath)(this.dna.templateEngineOptions)
   template = new Renderer(targetTemplate)
   if (this.dna.cache)
     this.templateCache[templateCacheKey] = template
