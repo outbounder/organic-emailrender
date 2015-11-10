@@ -5,6 +5,8 @@ module.exports = function(plasma, dna){
   this.plasma = plasma
   this.dna = dna
   this.templateCache = {}
+
+  var self = this
   plasma.on(dna.reactOn || "renderEmail", function (email, next) {
     self.renderEmail(email, function (err, renderedEmail) {
       if (dna.emitEmail) {
@@ -16,13 +18,13 @@ module.exports = function(plasma, dna){
         }
         plasma.emit(renderedEmail) // just fire and forget
       }
-      next() // reaction complete callback
+      next(err, renderedEmail) // reaction complete callback
     })
   })
 }
 
 module.exports.prototype.renderEmail = function (email, done) {
-  this.loadTemplate(email.template, function (err, template) {
+  this.loadTemplate(email, function (err, template) {
     if (err) return done(err)
     template.render(email.data, function (err, results) {
       if (err) return done(err)
@@ -47,7 +49,6 @@ module.exports.prototype.loadTemplate = function(email, done) {
   else if(this.dna.root)
     root = this.dna.root
 
-
   var targetTemplate = path.join(root, email.template)
 
   var templateEngine = this.dna.templateEngine
@@ -59,8 +60,8 @@ module.exports.prototype.loadTemplate = function(email, done) {
   }
 
   template = new Renderer(targetTemplate)
-  if (self.dna.cache)
-    self.templateCache[templateCacheKey] = template
+  if (this.dna.cache)
+    this.templateCache[templateCacheKey] = template
 
   done(null, template)
 }

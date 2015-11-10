@@ -9,11 +9,13 @@
   "author": "Boris Filipov",
   "license": "MIT",
   "dependencies": {
-    "async": "~0.2.10"
+    "lodash": "3.10.1"
   },
   "peerDependencies": {
-    "organic": "0.2.x",
     "organic-plasma": "0.0.x"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.13.1"
   },
   "repository": {
     "type": "git",

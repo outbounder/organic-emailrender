@@ -5,7 +5,7 @@ A simple email render supporting.
 ## `dna`
 
     {
-      "reactOn": String, default "renderEmail",
+      "reactOn": String,
       "root": String,
       "templateEngine": String,
       "cache": Boolean, default false,
@@ -13,7 +13,7 @@ A simple email render supporting.
       "syncWithEmailEmit": Boolean, optional, default false
     }
 
-### `dna.reactOn` chemical
+### `dna.reactOn` chemical, default `renderEmail`
 
     {
       template: String,
@@ -22,6 +22,7 @@ A simple email render supporting.
       to: String, optional
       from: String, optional
       subject: String, optional
+      ...
     }
 
 ### `dna.emitEmail` chemical
@@ -30,10 +31,15 @@ Re-emits `dna.reactOn` chemicals by adding new `type` value equal to `dna.emitEm
 
     {
       type: "{dna.emitEmail}",
-      template: String,
-      data: Object,
       html: String,
       text: String,
+
+      // all properties provided in `dna.reactOn` like
+      template: String,
+      data: Object,
+      to: String,
+      from: String,
+      subject: String,
       ...
     }
 
