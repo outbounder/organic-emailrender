@@ -3,10 +3,10 @@ describe("index", function () {
   var EmailSender = require("../index")
 
   it("renders email", function (next) {
-    var plasma = new Plasma()
+    var plasma = require('organic-plasma-feedback')(new Plasma())
     var instance = new EmailSender(plasma, {
       root: __dirname + '/data',
-      templateEngine: "email-templates"
+      templateEngine: "tests/data/email-templates"
     })
     plasma.emit({
       type: "renderEmail",

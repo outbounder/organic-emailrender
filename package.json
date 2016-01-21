@@ -4,18 +4,20 @@
   "description": "A simple email render",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node ./tests"
+    "test": "./node_modules/.bin/jasmine-node ./tests",
+    "release-patch": "npm run test && npm version patch && npm publish && git push --tags && git push origin master"
   },
   "author": "Boris Filipov",
   "license": "MIT",
   "dependencies": {
     "lodash": "3.10.1"
   },
-  "peerDependencies": {
-    "organic-plasma": "0.0.x"
-  },
   "devDependencies": {
-    "jasmine-node": "1.13.1"
+    "ejs": "^2.3.4",
+    "email-templates": "^2.0.1",
+    "jasmine-node": "1.13.1",
+    "organic-plasma": "^1.0.0",
+    "organic-plasma-feedback": "^0.0.3"
   },
   "repository": {
     "type": "git",
